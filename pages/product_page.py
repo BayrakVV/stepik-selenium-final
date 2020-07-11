@@ -16,7 +16,7 @@ class ProductPage(BasePage):
         product_added_message = self.get_text_from_element(
             *ProductPageLocators.PRODUCT_ADDED_MESSAGE
         )
-        assert product_name in product_added_message, \
+        assert product_name == product_added_message, \
             'Product has not been added to basket'
 
     def basket_price_is_product_price(self):
@@ -26,5 +26,5 @@ class ProductPage(BasePage):
         basket_total_price_message = self.get_text_from_element(
             *ProductPageLocators.BASKET_TOTAL_PRICE_MESSAGE
         )
-        assert product_price in basket_total_price_message, \
+        assert product_price == basket_total_price_message, \
             'Basket price and product price ins not equal'

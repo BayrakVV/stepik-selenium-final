@@ -13,6 +13,10 @@ class LoginPageLocators:
 class ProductPageLocators:
     ADD_TO_BASKET_BUTTON = (By.XPATH, '//button[@value="Add to basket"]')
     PRODUCT_NAME = (By.XPATH, '//*[@class="col-sm-6 product_main"]/child::h1')
-    PRODUCT_PRICE = (By.XPATH, '//p[@class="price_color"]')
-    PRODUCT_ADDED_MESSAGE = (By.CLASS_NAME, 'alert-success:nth-child(1)')
-    BASKET_TOTAL_PRICE_MESSAGE = (By.CLASS_NAME, 'alert-info')
+    PRODUCT_PRICE = (By.XPATH, '//article/div//div//p[@class="price_color"]')
+    PRODUCT_ADDED_MESSAGE = (
+        By.XPATH, '(//*[@class="alertinner "]//strong)[position()=1]'
+    )
+    BASKET_TOTAL_PRICE_MESSAGE = (
+        By.XPATH, '(//*[@class="alertinner "]//strong)[position()=3]'
+    )
