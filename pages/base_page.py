@@ -19,7 +19,14 @@ class BasePage:
             return False
         return True
 
-    def solve_quiz_and_get_code(self):
+    def get_text_from_element(self, how, what):
+        try:
+            text = self.browser.find_element(how, what).text
+        except NoSuchElementException as exception:
+            return exception
+        return text
+
+    def  solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
         answer = str(math.log(abs((12 * math.sin(float(x))))))
