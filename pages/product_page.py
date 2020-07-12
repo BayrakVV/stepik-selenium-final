@@ -13,18 +13,29 @@ class ProductPage(BasePage):
         product_name = self.get_text_from_element(
             *ProductPageLocators.PRODUCT_NAME
         )
-        product_added_message = self.get_text_from_element(
-            *ProductPageLocators.PRODUCT_ADDED_MESSAGE
+        product_name_in_product_added_message = self.get_text_from_element(
+            *ProductPageLocators.PRODUCT_NAME_IN_PRODUCT_ADDED_MESSAGE
         )
-        assert product_name == product_added_message, \
+        assert product_name == product_name_in_product_added_message, \
             'Product has not been added to basket'
 
     def basket_price_is_product_price(self):
         product_price = self.get_text_from_element(
             *ProductPageLocators.PRODUCT_PRICE
         )
-        basket_total_price_message = self.get_text_from_element(
-            *ProductPageLocators.BASKET_TOTAL_PRICE_MESSAGE
+        basket_price_basket_total_price_message = self.get_text_from_element(
+            *ProductPageLocators.BASKET_PRICE_IN_BASKET_TOTAL_PRICE_MESSAGE
         )
-        assert product_price == basket_total_price_message, \
+        assert product_price == basket_price_basket_total_price_message, \
             'Basket price and product price ins not equal'
+
+    def should_not_be_success_message(self):
+
+        assert self.is_not_element_present(
+            *ProductPageLocators.PRODUCT_ADDED_MESSAGE
+        ), 'Success message is presented, but should not be'
+
+    def success_message_disappeared(self):
+        assert self.is_disappeared(
+            *ProductPageLocators.PRODUCT_ADDED_MESSAGE
+        ), 'Success message didn\'t disappear'
